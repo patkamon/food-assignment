@@ -3,10 +3,22 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
 const Recipes = () => {
+
+  const [detail, setDetail] = useState()
+  const { recipeID } = useParams()
+
   const [name, setName] = useState()
   useEffect(() => {
-    setName(searchByID(recipeID))
-    searchByID(recipeID)
+    
+    getDataFromID(recipeID).then((data) => {
+      setDetail(Object.entries(data.meals[0]))
+      console.log(data.meals[0])
+    
+    })
+
+   
+
+
   }, [])
 
   async function getDataFromID(id) {
@@ -16,7 +28,6 @@ const Recipes = () => {
     return res.data
   }
 
-  const { recipeID } = useParams()
 
   async function searchAPI(menu) {
     const res = await axios.get(
@@ -36,20 +47,19 @@ const Recipes = () => {
   function searchByID(id) {
     getDataFromID(id).then((data) => {
       console.log(data.meals[0])
-      setName(data.meals[0].strMeal)
+      // setName(data.meals[0].strMeal)
 
-      let arr = []
-      for (const obj in data.meals[0]) {
-        if (obj.startsWith('strIngredient') && data.meals[0].obj !== '') {
-          arr.push(data.meals[0][obj])
-          // console.log(obj)
-        }
-      }
-      return arr
+      // let arr = []
+      // for (const obj in data.meals[0]) {
+      //   if (obj.startsWith('strIngredient') && data.meals[0].obj !== '') {
+      //     arr.push(data.meals[0][obj])
+      //     // console.log(obj)
+      //   }
+      // }
+      // return arr
     })
   }
-  const details = searchByID(recipeID)
-  console.log(details)
+
   // let arr = []
   // for (const obj in data.meals[0]) {
   //   if (obj.startsWith('strIngredient') && obj.value !== null) {
@@ -67,12 +77,21 @@ const Recipes = () => {
           <button type="submit">submit</button>
         </form>
       )}
+
+
+      {detail && (detail.filter(([k,v]) => k.startsWith('strIngredient') && v!== "" )).map((r) => (<div>{r[1]}</div>))
+      
+      
+      }
+
+
+
       {recipeID && <Link to="/Recipes">back</Link>}
       {/* {recipeID && searchByID(recipeID)} */}
       {/* <img src={searchAPI(menu)}></img> */}
-      {name}
+      {/* {name} */}
       {/* {searchByID(recipeID)} */}
-      {details}
+      {/* {detail} */}
     </div>
   )
 }
