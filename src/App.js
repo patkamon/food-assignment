@@ -21,10 +21,16 @@ function App() {
       <Route path="*" element={<Navigate to="recipes" />} />
 
 
+      
+
+
+
+
+
+
+
+
     </Routes>
-
-
-
 
 
 
