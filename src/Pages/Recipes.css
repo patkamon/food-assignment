@@ -1,4 +1,4 @@
-* {
+<<<<<<< HEAD * {
   margin: 0;
   padding: 0;
 }
@@ -29,12 +29,17 @@
   position: relative;
 }
 
+.container > div > img {
+  border-top-left-radius: 10%;
+  border-top-right-radius: 10%;
+}
+
 .container > div > p {
   object-fit: cover;
   position: absolute;
   color: white;
   padding: auto;
+  font-size: 150%;
+  white-space: break-word;
   bottom: 5%;
-  right: 28%;
-  font-size: 200%;
 }
