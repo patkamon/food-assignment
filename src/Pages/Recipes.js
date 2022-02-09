@@ -1,8 +1,23 @@
 import axios from 'axios'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
+import './Recipes.css';
+
+
 const Recipes = () => {
+
+
+  const [img1, setImg1] = useState()
+
+
+  useEffect(() => {
+    getImg('sandwich')
+    
+
+
+  }, [])
+
 
 
 async function getDataFromID(id) {
@@ -37,6 +52,15 @@ function searchByID(id) {
 }
 
 
+function getImg(name){
+  searchAPI(name).then((data) => {
+    console.log(data)
+    setImg1(data.meals[0].strMealThumb)
+
+  })
+
+}
+
 
 
   return (
@@ -44,15 +68,28 @@ function searchByID(id) {
 
     
     {  recipeID  || <form onSubmit={onSearch}>
-      <input placeholder='Search for meal'></input>
+      <input className='search-bar'  placeholder='Search for meal'></input>
       <button type='submit'>submit</button>
     </form> }
+
+    
+    
 
 
     {  recipeID  && <Link to='/Recipes'>back</Link>}
 
-    { recipeID && searchByID(recipeID) }
 
+
+    <div className='container'>
+    { recipeID ||  <div className='menu1'> 
+            <img className='img1' src={img1} ></img>
+            <p>Sandwich</p>
+                  </div> }
+    { recipeID ||  <div className='menu2'> 
+            <img className='img1' src={img1} ></img>
+            <p>Sandwich</p>
+                  </div> }
+    </div>
 
 
 
