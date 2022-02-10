@@ -1,10 +1,23 @@
-<<<<<<< HEAD * {
+* {
   margin: 0;
   padding: 0;
 }
 
+body {
+  background-color: #edd163;
+}
 .search-bar {
-  background-color: red;
+  margin-top: 30px;
+  padding: 15px 100px;
+}
+
+.btn-submit {
+  background-color: #3b2c64;
+  margin-top: 30px;
+  padding: 15px 30px;
+  border-top-right-radius: 10%;
+  border-bottom-right-radius: 10%;
+  color: white;
 }
 
 .container {
@@ -17,8 +30,8 @@
 }
 
 .container > div {
-  background-color: rgb(83, 100, 161);
-  border: 4px solid rgb(255, 255, 255);
+  background-color: white;
+  border: 3px solid rgb(255, 255, 255);
   border-radius: 10%;
   width: 300px;
   height: 300px;
@@ -37,7 +50,7 @@
 .container > div > p {
   object-fit: cover;
   position: absolute;
-  color: white;
+  color: #3b2c64;
   padding: auto;
   font-size: 150%;
   white-space: break-word;

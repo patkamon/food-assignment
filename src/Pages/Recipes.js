@@ -70,7 +70,7 @@ function onSearch(e) {
   console.log(e.target[0].value)
   searchAPI(e.target[0].value).then((data) => {
     console.log(data.meals[0].idMeal)
-    window.location = `http://localhost:3001/recipes/${data.meals[0].idMeal}`
+    window.location = `http://localhost:3000/recipes/${data.meals[0].idMeal}`
   })
 
 }
@@ -99,36 +99,42 @@ function getName(name, setName){
 
 
   return (
-    <div>Recipes
-
+    <div>
     
-    { recipeID  || <form onSubmit={onSearch}>
-      <input placeholder='Search for meal'></input>
-      <button type='submit'>submit</button>
+    
+    { !recipeID && <form onSubmit={onSearch}>
+      <input className='search-bar' placeholder="Search for meal" ></input>
+      <button className='btn-submit'type='submit'>search</button>
     </form> }
 
-    { recipeID || getImg('Sandwich', setImg1)}
-    { recipeID || getName('Sandwich', setName1)}
-    { recipeID  && <Link to='/Recipes'>back</Link>}
-    { recipeID && searchByID(recipeID) }
-    { recipeID || getImg('Steak', setImg2)}
-    { recipeID || getName('Steak', setName2)}
-    { recipeID || getImg('Soup', setImg3)}
-    { recipeID || getName('Soup', setName3)}
-    { recipeID || getImg('Noodle', setImg4)}
-    { recipeID || getName('Noodle', setName4)}
-    { recipeID || getImg('Salad', setImg5)}
-    { recipeID || getName('Salad', setName5)}
-    { recipeID || getImg('Burger', setImg6)}
-    { recipeID || getName('Burger', setName6)}
-    { recipeID || getImg('Pizza', setImg7)}
-    { recipeID || getName('Pizza', setName7)}
-    { recipeID || getImg('Chicken', setImg8)}
-    { recipeID || getName('Chicken', setName8)}
+
    
 
+    { !recipeID && getImg('Sandwich', setImg1)}
+    { !recipeID && getName('Sandwich', setName1)}
+   
+    
+    {/* { recipeID && searchByID(recipeID) } */}
 
-    {recipeID || <div className='container'>
+    { !recipeID && getImg('Steak', setImg2)}
+    { !recipeID && getName('Steak', setName2)}
+    { !recipeID && getImg('Soup', setImg3)}
+    { !recipeID && getName('Soup', setName3)}
+    { !recipeID && getImg('Noodle', setImg4)}
+    { !recipeID && getName('Noodle', setName4)}
+    { !recipeID && getImg('Salad', setImg5)}
+    { !recipeID && getName('Salad', setName5)}
+    { !recipeID && getImg('Burger', setImg6)}
+    { !recipeID && getName('Burger', setName6)}
+    { !recipeID && getImg('Pizza', setImg7)}
+    { !recipeID && getName('Pizza', setName7)}
+    { !recipeID && getImg('Chicken', setImg8)}
+    { !recipeID && getName('Chicken', setName8)}
+   
+    
+    { recipeID  && <Link to='/Recipes'>back</Link>}
+
+    {!recipeID && <div className='container'>
       <div className='menu1'>
       <img src={img1}></img>
       <p>{name1}</p>
