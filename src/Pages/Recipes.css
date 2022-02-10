@@ -1,10 +1,20 @@
-<<<<<<< HEAD * {
+* {
   margin: 0;
   padding: 0;
 }
 
 .search-bar {
-  background-color: red;
+  margin-top: 30px;
+  padding: 15px 100px;
+}
+
+.btn-submit {
+  background-color: #3b2c64;
+  margin-top: 30px;
+  padding: 15px 30px;
+  border-top-right-radius: 10%;
+  border-bottom-right-radius: 10%;
+  color: white;
 }
 
 .container {
@@ -39,7 +49,95 @@
   position: absolute;
   color: white;
   padding: auto;
-  font-size: 150%;
+  font-size: 100%;
+  margin-left: 2.5rem;
   white-space: break-word;
   bottom: 5%;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&family=IBM+Plex+Sans+Thai:wght@100;200;300;400;500;600;700&family=Kanit:wght@100;200;300;400;500&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,900;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&family=Prompt:wght@100;200;300;400;500;600&display=swap");
+
+body {
+  font-family: Georgia, Times, serif;
+  color: black;
+  background-color: #ecc859;
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+  /* margin: 0; */
+  font-weight: 700;
+  /* text-align: center; */
+}
+
+/* header,
+main {
+  display: flex;
+  justify-content: center;
+} */
+
+.card {
+  border: 0px solid white;
+  /* background-color: white; */
+  /* margin: 3% 35%; */
+  border-radius: 10%;
+  /* position: absolute;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center; */
+  padding-top: 30px;
+  left: 0;
+  right: 0;
+  width: 400px; /* Assign a value */
+  height: 500px; /* Assign a value */
+  margin: auto;
+  padding-bottom: 10%;
+}
+
+.search-pic {
+  /* max-width: 20%; */
+  /* padding: 5px; */
+  width: 400px;
+  height: 300px;
+  border-top-left-radius: 10%;
+  border-top-right-radius: 10%;
+  background-color: white;
+  margin-bottom: -10px;
+}
+
+.card > div {
+  font-size: 12px;
+  text-align: left;
+  padding-left: 15px;
+  background-color: white;
+  border: 2px solid white;
+}
+
+.card > div:hover {
+  color: blue;
+}
+
+.card > h1 {
+  background-color: white;
+  font-size: 20px;
+  padding: 10px;
+}
+.card > h1:hover {
+  color: blue;
+}
+
+.btn-back {
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 120%;
+  color: blue;
+}
+
+.btn-back:hover {
+  color: white;
+}
+
+.end-page {
+  padding: -50%;
 }

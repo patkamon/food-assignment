@@ -1,12 +1,11 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import './Recipes.css'
-
 import './Recipes.css';
-
+// import './RecipesID.css';
 
 const Recipes = () => {
+  const { recipeID } = useParams()
 
   const [img1, setImg1] = useState()
   const [name1, setName1] = useState()
@@ -35,19 +34,24 @@ const Recipes = () => {
 
   useEffect(() => {
     getImg('Sandwich')
-  
+
   }, [])
-
-
+ 
 
 
   useEffect(() => {
     getImg('sandwich')
-    
-
 
   }, [])
 
+  useEffect(() => {
+    getDataFromID(recipeID).then((data) => {
+      setDetail(Object.entries(data.meals[0]))
+      console.log(data.meals[0])
+    })
+  }, [recipeID])
+
+  const [detail, setDetail] = useState()
 
 
 async function getDataFromID(id) {
@@ -55,7 +59,7 @@ async function getDataFromID(id) {
   return res.data
 }
 
-    const { recipeID } = useParams()
+   
 
 
     async function searchAPI(menu) {
@@ -70,7 +74,7 @@ function onSearch(e) {
   console.log(e.target[0].value)
   searchAPI(e.target[0].value).then((data) => {
     console.log(data.meals[0].idMeal)
-    window.location = `http://localhost:3001/recipes/${data.meals[0].idMeal}`
+    window.location = `http://localhost:3000/recipes/${data.meals[0].idMeal}`
   })
 
 }
@@ -80,6 +84,12 @@ function searchByID(id) {
     console.log(data)
   })
 }
+function clearPage(e) {
+  e.preventDefault()
+  setDetail()
+  window.location = `http://localhost:3000/Recipes`
+}
+
 
 function getImg(name, setImg){
   searchAPI(name).then((data) => {
@@ -99,36 +109,34 @@ function getName(name, setName){
 
 
   return (
-    <div>Recipes
+    <div>
 
     
-    { recipeID  || <form onSubmit={onSearch}>
-      <input placeholder='Search for meal'></input>
-      <button type='submit'>submit</button>
+    { !recipeID && <form onSubmit={onSearch}>
+      <input className='search-bar' placeholder='Search for meal'></input>
+      <button className='btn-submit'type='submit'>submit</button>
     </form> }
 
-    { recipeID || getImg('Sandwich', setImg1)}
-    { recipeID || getName('Sandwich', setName1)}
-    { recipeID  && <Link to='/Recipes'>back</Link>}
-    { recipeID && searchByID(recipeID) }
-    { recipeID || getImg('Steak', setImg2)}
-    { recipeID || getName('Steak', setName2)}
-    { recipeID || getImg('Soup', setImg3)}
-    { recipeID || getName('Soup', setName3)}
-    { recipeID || getImg('Noodle', setImg4)}
-    { recipeID || getName('Noodle', setName4)}
-    { recipeID || getImg('Salad', setImg5)}
-    { recipeID || getName('Salad', setName5)}
-    { recipeID || getImg('Burger', setImg6)}
-    { recipeID || getName('Burger', setName6)}
-    { recipeID || getImg('Pizza', setImg7)}
-    { recipeID || getName('Pizza', setName7)}
-    { recipeID || getImg('Chicken', setImg8)}
-    { recipeID || getName('Chicken', setName8)}
+    { !recipeID && getImg('Sandwich', setImg1)}
+    { !recipeID && getName('Sandwich', setName1)}
+    { !recipeID && getImg('Steak', setImg2)}
+    { !recipeID && getName('Steak', setName2)}
+    { !recipeID && getImg('Soup', setImg3)}
+    { !recipeID && getName('Soup', setName3)}
+    { !recipeID && getImg('Noodle', setImg4)}
+    { !recipeID && getName('Noodle', setName4)}
+    { !recipeID && getImg('Salad', setImg5)}
+    { !recipeID && getName('Salad', setName5)}
+    { !recipeID && getImg('Burger', setImg6)}
+    { !recipeID && getName('Burger', setName6)}
+    { !recipeID && getImg('Pizza', setImg7)}
+    { !recipeID && getName('Pizza', setName7)}
+    { !recipeID && getImg('Chicken', setImg8)}
+    { !recipeID && getName('Chicken', setName8)}
    
 
 
-    {recipeID || <div className='container'>
+    {!recipeID && <div className='container'>
       <div className='menu1'>
       <img src={img1}></img>
       <p>{name1}</p>
@@ -171,6 +179,43 @@ function getName(name, setName){
 
 
       </div>}
+
+
+
+      { recipeID && searchByID(recipeID) }
+      <div className='card'>
+
+
+      {!recipeID && <span className='end-page'></span>}
+
+
+      {detail &&
+        detail
+          .filter(([k, v]) => k.startsWith('strMealThumb'))
+          .map((thumb) => (
+            <img className='search-pic' key={thumb} src={thumb[1]} alt="thumbnail"></img>
+          ))
+          
+  
+          }
+      
+      {detail && detail
+          .filter(([k, v]) => k===('strMeal') )
+          .map((r) => <h1 key={r}>{r[1]}</h1>)}
+
+      {detail &&
+        detail
+          .filter(([k, v]) => k.startsWith('strIngredient') && v !== '')
+          .map((r) => <div key={r}>{r[1]}</div>)}
+      </div>
+
+      {recipeID && (
+        <form onSubmit={clearPage}>
+          <button className='btn-back' type="submit">back</button>
+        </form>
+      )}
+
+
 
 
 
