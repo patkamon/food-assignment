@@ -32,7 +32,7 @@ const Recipes = () => {
     console.log(e.target[0].value)
     searchAPI(e.target[0].value).then((data) => {
       console.log(data.meals[0])
-      window.location = `http://localhost:3000/recipes/${data.meals[0].idMeal}`
+      window.location = `http://localhost:3002/recipes/${data.meals[0].idMeal}`
     })
   }
   <div class="square"></div>
@@ -53,7 +53,7 @@ const Recipes = () => {
         </form>
       )}
       <br></br>
-
+<div className='card'>
       {detail &&
         detail
           .filter(([k, v]) => k.startsWith('strMealThumb'))
@@ -64,6 +64,7 @@ const Recipes = () => {
         detail
           .filter(([k, v]) => k.startsWith('strIngredient') && v !== '')
           .map((r) => <div key={r}>{r[1]}</div>)}
+      </div>
       {recipeID && (
         <form onSubmit={clearPage}>
           <br></br>
