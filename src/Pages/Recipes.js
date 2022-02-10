@@ -7,6 +7,7 @@ const Recipes = () => {
   const { recipeID } = useParams()
 
   useEffect(() => {
+    if (!recipeID) return
     getDataFromID(recipeID).then((data) => {
       setDetail(Object.entries(data.meals[0]))
       console.log(data.meals[0])
@@ -60,6 +61,7 @@ const Recipes = () => {
         detail
           .filter(([k, v]) => k.startsWith('strIngredient') && v !== '')
           .map((r) => <div key={r}>{r[1]}</div>)}
+      {/* {recipeID && <Link to="/Recipes"> back</Link>} */}
       {recipeID && (
         <form onSubmit={clearPage}>
           <button type="submit">back</button>
