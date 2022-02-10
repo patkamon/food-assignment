@@ -1,12 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-<<<<<<< HEAD
-import { Link, useParams } from 'react-router-dom'
-import './RecipesID.css';
-
-=======
 import { useParams } from 'react-router-dom'
->>>>>>> origin/jib
+import './RecipesID.css';
 
 const Recipes = () => {
   const [detail, setDetail] = useState()
@@ -40,6 +35,7 @@ const Recipes = () => {
       window.location = `http://localhost:3000/recipes/${data.meals[0].idMeal}`
     })
   }
+  <div class="square"></div>
 
   function clearPage(e) {
     e.preventDefault()
@@ -56,6 +52,8 @@ const Recipes = () => {
           <button type="submit">submit</button>
         </form>
       )}
+      <br></br>
+
       {detail &&
         detail
           .filter(([k, v]) => k.startsWith('strMealThumb'))
@@ -68,6 +66,8 @@ const Recipes = () => {
           .map((r) => <div key={r}>{r[1]}</div>)}
       {recipeID && (
         <form onSubmit={clearPage}>
+          <br></br>
+          <br></br>
           <button type="submit">back</button>
         </form>
       )}
